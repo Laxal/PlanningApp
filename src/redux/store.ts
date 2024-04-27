@@ -1,16 +1,16 @@
-import { configureStore } from "@reduxjs/toolkit";
-import { useDispatch, useSelector } from "react-redux";
-import { plannerApi } from "./query";
-import { planningApp } from "./reducer";
+import { configureStore } from '@reduxjs/toolkit';
+import { useDispatch, useSelector } from 'react-redux';
+import { plannerApi } from './query';
+import { planningApp } from './reducer';
 
-export const store = configureStore( {
+export const store = configureStore({
   reducer: {
     planningApp: planningApp,
     [plannerApi.reducerPath]: plannerApi.reducer,
   },
-  middleware: getDefaultMiddleware =>
+  middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware().concat(plannerApi.middleware),
-} )
+});
 
 type RootState = ReturnType<typeof store.getState>;
 type AppDispatch = typeof store.dispatch;
